@@ -2,7 +2,7 @@ public class solutions {
     public static void main (String [] args)
     {
         int[] prices = {7,1,5,3,6,4};
-        System.out.println(max(prices));
+        System.out.println(maxProfit(prices));
 
     }
 
@@ -22,36 +22,26 @@ public class solutions {
     }
 
     public static int maxProfit(int[] prices) {
-        int j = 1;
+        int i = 1;
+        int tmp = 0;
         int pro = 0;
-        for (int i = 0; i < prices.length; i++)
+        int base = prices[0];
+        while (i < prices.length)
         {
-            if (prices[j] >= prices[i])
+            if ((prices[i] > base))
             {
-                j++;
-            }else if (findMax(prices,i,j) > pro)
+                tmp = prices[i] - base;
+                if (tmp > pro)
+                {
+                    pro = tmp;
+                }
+            }else
             {
-                pro = findMax(prices,i,j);
-                i = j;
-                j ++;
+                base = prices[i];
             }
+            i ++;
         }
         return pro;
-
     }
-    public static int findMax(int[] price, int a, int b)
-    {
-        int i = a;
-        int tmp = price[0];
-        int pro = 0;
-        while (i < b)
-        {
-            if ((price[i] - tmp) > pro)
-            {
-                pro = price[i] - tmp;
-            }
-        }
 
-        return pro;
-    }
 }
